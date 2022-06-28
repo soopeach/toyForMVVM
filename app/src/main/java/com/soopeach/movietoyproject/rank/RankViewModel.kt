@@ -71,7 +71,7 @@ class RankViewModel : ViewModel() {
     }
 
     // 검색창 초기화
-    fun clearSearchBar(){ _dateForSearch.value = ""}
+    fun clearSearchBar(){ _dateForSearch.value = null}
 
     // listIsEmpty false로 초기화
     fun listInit(){ _listEmpty.value = false }
