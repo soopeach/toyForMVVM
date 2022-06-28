@@ -17,7 +17,8 @@ class SearchFragment : Fragment() {
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentSearchBinding>(inflater,
             R.layout.fragment_search, container, false)
-        // Inflate the layout for this fragment
+
+
         return binding.root
     }
 

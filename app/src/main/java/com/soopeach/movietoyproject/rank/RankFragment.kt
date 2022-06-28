@@ -35,7 +35,6 @@ class RankFragment : Fragment() {
             }
         })
 
-
         val adapter = RankListAdapter()
         binding.recyclerView.adapter = adapter
 
