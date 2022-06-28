@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.soopeach.movietoyproject.R
+import com.soopeach.movietoyproject.adapters.RankListAdapter
 import com.soopeach.movietoyproject.databinding.FragmentRankBinding
 
 
@@ -24,7 +25,8 @@ class RankFragment : Fragment() {
         val rankViewModel = ViewModelProvider(this).get(RankViewModel::class.java)
         binding.viewModel = rankViewModel
 
-
+        val adapter = RankListAdapter()
+        binding.recyclerView.adapter = adapter
 
         return binding.root
     }
