@@ -44,10 +44,18 @@ class RankViewModel : ViewModel() {
                 val rankList = retrofitForRankList.getRankData(targetDt = dateForSearch.value ?: today)
                 _movieRankList.value = rankList.getRankList()
                 Log.d("통신성공-rank","${_movieRankList.value}")
+
             } catch (e: Exception){
                 Log.d("통신실패-rank", "$e 에러발생")
+
+
             }
+            clearSearchBar()
         }
 
     }
+
+    // 검색창 초기화
+    fun clearSearchBar(){ _dateForSearch.value = ""}
+
 }
