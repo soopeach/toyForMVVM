@@ -27,6 +27,7 @@ class RankFragment : Fragment() {
         val rankViewModel = ViewModelProvider(this).get(RankViewModel::class.java)
         binding.viewModel = rankViewModel
 
+        // 검색결과가 없다면 경고창 출력.
         rankViewModel.listEmpty.observe(viewLifecycleOwner, Observer { isEmpty ->
             if (isEmpty){
                 Toast.makeText(context, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show()

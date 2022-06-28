@@ -34,6 +34,7 @@ class RankViewModel : ViewModel() {
         get() = _listEmpty
 
     init {
+        movieRankListInit()
         listInit()
         Log.d("RankViewModel", "${dateForSearch.value}")
     }
@@ -52,6 +53,7 @@ class RankViewModel : ViewModel() {
                 // 검색 정보가 없다면
                 if (rankList.getRankList().isEmpty()){
                     Log.d("통신성공-rank","검색 정보가 없음.")
+                    movieRankListInit()
                     _listEmpty.value = true
                 } else {
                     _movieRankList.value = rankList.getRankList()
@@ -73,5 +75,28 @@ class RankViewModel : ViewModel() {
 
     // listIsEmpty false로 초기화
     fun listInit(){ _listEmpty.value = false }
+
+    // movieRankList 초기화
+    fun movieRankListInit(){ _movieRankList.value = listOf(
+        RankList.BoxOfficeResult.DailyBoxOffice(
+            audiAcc = "null",
+            audiChange = "null",
+            audiCnt = "null",
+            audiInten = "null",
+            movieCd = "null",
+            movieNm = "검색기록 없음.",
+            openDt = "null",
+            rank = "0",
+            rankInten = "null",
+            rankOldAndNew = "null",
+            rnum = "null",
+            salesAcc = "null",
+            salesAmt = "null",
+            salesChange = "null",
+            salesInten = "null",
+            salesShare = "null",
+            scrnCnt = "null",
+            showCnt = "null",
+        )) }
 
 }
