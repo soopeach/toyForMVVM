@@ -3,8 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.soopeach.movietoyproject.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/rankFragment"
+        android:icon="@drawable/movie"
+        android:title="영화순위" />
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/search"
+        android:title="제목으로 영화검색" />
+    <item
+        android:id="@+id/settingFragment"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="미정" />
 </menu>
