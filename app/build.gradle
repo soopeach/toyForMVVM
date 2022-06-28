@@ -22,6 +22,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "rankKey", properties["rank_key"]
+        buildConfigField "String", "baseUrl", properties["base_url"]
     }
 
     buildTypes {
