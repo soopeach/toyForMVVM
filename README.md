@@ -12,6 +12,7 @@
   - ViewModel
   - LiveData
   - LifeCyclerOwner
+  - Navigation
 - DataBinding
 - Retrofit
 - Coroutine
