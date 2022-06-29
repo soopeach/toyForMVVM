@@ -18,3 +18,7 @@ data class SearchDataList(
         val userRating: String
     )
 }
+
+fun SearchDataList.getItem() : List<SearchDataList.Item> {
+    return items
+}
