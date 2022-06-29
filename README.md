@@ -17,6 +17,7 @@
 - Retrofit
 - Coroutine
 - MVVM Pattern
+- Glide
 
 사용할 예정인 기술 스택
 - Room
