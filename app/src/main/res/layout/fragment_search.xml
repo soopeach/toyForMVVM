@@ -19,10 +19,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             hintForSearch="@{viewModel.titleHint}"
+            android:text="@={viewModel._titleForSearch}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSearchForTitle"
-            />
+            app:layout_constraintEnd_toStartOf="@+id/btnSearchForTitle" />
+
         <Button
             android:id="@+id/btnSearchForTitle"
             android:text="검색"
@@ -30,7 +31,18 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:onClick="@{() -> viewModel.searchBtnOnClick()}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            searchListData="@{viewModel.searchedMovieList}"
+            app:layout_constraintTop_toBottomOf="@+id/titleForSearch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 

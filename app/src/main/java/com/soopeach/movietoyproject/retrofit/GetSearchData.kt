@@ -12,6 +12,6 @@ interface GetSearchData {
     suspend fun getSearchData(
         @Header("X-Naver-Client-Id") clientId: String = BuildConfig.naverClientId,
         @Header("X-Naver-Client-Secret") clientSecret: String = BuildConfig.naverClientSecret,
-        @Query("query") title: String
+        @Query("query") title: String,
     ): SearchDataList
 }
