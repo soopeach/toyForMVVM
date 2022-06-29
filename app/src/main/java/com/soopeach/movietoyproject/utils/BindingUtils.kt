@@ -7,8 +7,8 @@ import com.soopeach.movietoyproject.models.RankList
 class BindingUtils {
 }
 
-@BindingAdapter("hintForDate")
-fun setHintForDate(editText: android.widget.EditText, hint: String) {
+@BindingAdapter("hintForSearch")
+fun setHintForSearch(editText: android.widget.EditText, hint: String) {
     editText.hint = "검색 예시 ex) " + hint
 }
 
