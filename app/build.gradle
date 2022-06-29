@@ -23,6 +23,8 @@ android {
 
         buildConfigField "String", "rankKey", properties["rank_key"]
         buildConfigField "String", "baseUrl", properties["base_url"]
+        buildConfigField "String", "naverClientId", properties["x_naver_client_id"]
+        buildConfigField "String", "naverClientSecret", properties["x_naver_client_secret"]
     }
 
     buildTypes {
