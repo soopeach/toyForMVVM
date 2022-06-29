@@ -1,14 +1,19 @@
 package com.soopeach.movietoyproject.utils
 
+import android.content.Context
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.soopeach.movietoyproject.R
 import com.soopeach.movietoyproject.adapters.RankListAdapter
+import com.soopeach.movietoyproject.adapters.SearchListAdapter
 import com.soopeach.movietoyproject.models.RankList
+import com.soopeach.movietoyproject.models.SearchDataList
 
 class BindingUtils {
 }
 
-@BindingAdapter("hintForDate")
-fun setHintForDate(editText: android.widget.EditText, hint: String) {
+@BindingAdapter("hintForSearch")
+fun setHintForSearch(editText: android.widget.EditText, hint: String) {
     editText.hint = "검색 예시 ex) " + hint
 }
 
@@ -36,4 +41,35 @@ fun setRankOpenDt(textView: android.widget.TextView, item: RankList.BoxOfficeRes
 @BindingAdapter("rankAudiAcc")
 fun setRankAudiAcc(textView: android.widget.TextView, item: RankList.BoxOfficeResult.DailyBoxOffice?) {
     textView.text = "누적 관객수 : " + item?.audiAcc
+}
+
+@BindingAdapter("searchListData")
+fun bindRecyclerViewForSearch(recyclerView: androidx.recyclerview.widget.RecyclerView, data: List<SearchDataList.Item>?) {
+    val adapter = recyclerView.adapter as SearchListAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("searchTitle")
+fun setSearchTitle(textView: android.widget.TextView, item: SearchDataList.Item?) {
+    textView.text = "제목 : " + item?.title?.getForMatted()
+}
+
+@BindingAdapter("searchUserRating")
+fun setSearchUserRating(textView: android.widget.TextView, item: SearchDataList.Item?) {
+    textView.text = "평점 : " + item?.userRating
+}
+
+@BindingAdapter("searchPubDate")
+fun setSearchPubDate(textView: android.widget.TextView, item: SearchDataList.Item?) {
+    textView.text = "개봉일자 : " + item?.pubDate
+}
+
+@BindingAdapter("searchImage")
+fun setSearchImage(imageView: android.widget.ImageView, item: SearchDataList.Item?){
+    val url = item?.image
+    Glide.with(imageView.context).load(url).placeholder(R.drawable.downloading).into(imageView)
+}
+
+fun String.getForMatted() : String {
+    return this.replace("<b>", "").replace("</b>", "")
 }
