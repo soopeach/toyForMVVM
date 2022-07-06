@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.soopeach.movietoyproject.R
 import com.soopeach.movietoyproject.adapters.RankListAdapter
 import com.soopeach.movietoyproject.adapters.SearchListAdapter
+import com.soopeach.movietoyproject.models.RankDetail
 import com.soopeach.movietoyproject.models.RankList
 import com.soopeach.movietoyproject.models.SearchDataList
 
@@ -73,3 +74,27 @@ fun setSearchImage(imageView: android.widget.ImageView, item: SearchDataList.Ite
 fun String.getForMatted() : String {
     return this.replace("<b>", "").replace("</b>", "")
 }
+// 아래는 Detil 관련
+@BindingAdapter("rankDetailTitle")
+fun setRankDetailTitle(textView: android.widget.TextView, item: RankDetail.MovieInfoResult.MovieInfo?) {
+    textView.text = item?.movieNm
+}
+
+@BindingAdapter("rankDetailGenre")
+fun setRankDtailGenre(textView: android.widget.TextView, item: RankDetail.MovieInfoResult.MovieInfo?) {
+    textView.textSize = 14f
+    textView.text = item?.genres?.map { it.genreNm }?.joinToString(", ")
+}
+
+@BindingAdapter("rankDetailOpenDt")
+fun setRankDetailOpenDt(textView: android.widget.TextView, item: RankDetail.MovieInfoResult.MovieInfo?) {
+    textView.textSize = 15f
+    textView.text = item?.openDt
+}
+
+@BindingAdapter("rankDetailActors")
+fun setRankDtailActors(textView: android.widget.TextView, item: RankDetail.MovieInfoResult.MovieInfo?) {
+    textView.textSize = 14f
+    textView.text = item?.actors?.map { "${it.peopleNm}-(${it.cast}역)" }?.joinToString(", ")
+}
+

@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.soopeach.movietoyproject.R
+import com.soopeach.movietoyproject.adapters.OnClickListener
 import com.soopeach.movietoyproject.adapters.RankListAdapter
 import com.soopeach.movietoyproject.databinding.FragmentRankBinding
 
@@ -27,6 +29,20 @@ class RankFragment : Fragment() {
         val rankViewModel = ViewModelProvider(this).get(RankViewModel::class.java)
         binding.viewModel = rankViewModel
 
+        val adapter = RankListAdapter(OnClickListener {
+            rankViewModel.setSelectedMovieCd(it)
+        })
+        binding.recyclerView.adapter = adapter
+
+        rankViewModel.selectedMovieCd.observe(viewLifecycleOwner, Observer { selectedMovieCd ->
+            selectedMovieCd?.let{
+                this.findNavController()
+                    .navigate(RankFragmentDirections.actionRankFragmentToDetailRankFragment(selectedMovieCd))
+                rankViewModel.initSelectedMovieCd()
+            }
+
+        })
+
         // 검색결과가 없다면 경고창 출력.
         rankViewModel.listEmpty.observe(viewLifecycleOwner, Observer { isEmpty ->
             if (isEmpty){
@@ -35,8 +51,6 @@ class RankFragment : Fragment() {
             }
         })
 
-        val adapter = RankListAdapter()
-        binding.recyclerView.adapter = adapter
 
         return binding.root
     }

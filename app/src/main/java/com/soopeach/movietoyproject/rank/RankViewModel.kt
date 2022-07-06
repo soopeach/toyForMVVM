@@ -9,7 +9,9 @@ import com.soopeach.movietoyproject.models.RankList
 import com.soopeach.movietoyproject.models.getRankList
 import com.soopeach.movietoyproject.retrofit.GetRankData
 import com.soopeach.movietoyproject.retrofit.RetrofitConnect
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -29,6 +31,11 @@ class RankViewModel : ViewModel() {
     val movieRankList: LiveData<List<RankList.BoxOfficeResult.DailyBoxOffice>>
         get() = _movieRankList
 
+    private val _selectedMovieCd = MutableLiveData<String>()
+    val selectedMovieCd: LiveData<String>
+        get() = _selectedMovieCd
+
+    // 검색결과가 없을 경우를 확인하기 위한 변수
     private val _listEmpty = MutableLiveData<Boolean>()
     val listEmpty: LiveData<Boolean>
         get() = _listEmpty
@@ -36,7 +43,7 @@ class RankViewModel : ViewModel() {
     init {
         movieRankListInit()
         listInit()
-        Log.d("RankViewModel", "${dateForSearch.value}")
+        initSelectedMovieCd()
     }
 
     fun searchBtnOnClick() {
@@ -86,7 +93,7 @@ class RankViewModel : ViewModel() {
                 audiChange = "null",
                 audiCnt = "null",
                 audiInten = "null",
-                movieCd = "null",
+                movieCd = null,
                 movieNm = "검색기록 없음.",
                 openDt = "null",
                 rank = "0",
@@ -102,6 +109,14 @@ class RankViewModel : ViewModel() {
                 showCnt = "null",
             )
         )
+    }
+
+    fun setSelectedMovieCd(movieData: RankList.BoxOfficeResult.DailyBoxOffice) {
+        _selectedMovieCd.value = movieData.movieCd
+    }
+
+    fun initSelectedMovieCd() {
+        _selectedMovieCd.value = null
     }
 
 }
