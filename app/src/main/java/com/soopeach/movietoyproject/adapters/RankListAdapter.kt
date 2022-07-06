@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.soopeach.movietoyproject.databinding.RankListBinding
 import com.soopeach.movietoyproject.models.RankList
 
-class RankListAdapter : ListAdapter<RankList.BoxOfficeResult.DailyBoxOffice, RankListAdapter.viewHolder>(DiffCallback){
+class RankListAdapter(private val onClickListener: OnClickListener) : ListAdapter<RankList.BoxOfficeResult.DailyBoxOffice, RankListAdapter.viewHolder>(DiffCallback){
 
     inner class viewHolder(val binding: RankListBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(dailyBoxOffice: RankList.BoxOfficeResult.DailyBoxOffice){
@@ -24,7 +24,13 @@ class RankListAdapter : ListAdapter<RankList.BoxOfficeResult.DailyBoxOffice, Ran
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.bind(getItem(position))
+
+        val dailyBoxOffice = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(dailyBoxOffice)
+        }
+
+        holder.bind(dailyBoxOffice)
     }
 }
 
@@ -43,4 +49,8 @@ object DiffCallback : DiffUtil.ItemCallback<RankList.BoxOfficeResult.DailyBoxOff
         return oldItem == newItem
     }
 
+}
+
+class OnClickListener(val clickListener: (dailyBoxOffice: RankList.BoxOfficeResult.DailyBoxOffice) -> Unit) {
+    fun onClick(dailyBoxOffice: RankList.BoxOfficeResult.DailyBoxOffice) = clickListener(dailyBoxOffice)
 }

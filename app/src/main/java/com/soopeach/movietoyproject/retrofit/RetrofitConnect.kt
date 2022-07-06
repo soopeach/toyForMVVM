@@ -8,7 +8,7 @@ class RetrofitConnect {
 
     companion object{
 
-        private val BASE_URL = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/"
+        private val BASE_URL = "https://kobis.or.kr/kobisopenapi/webservice/rest/"
         private var INSTANCE : Retrofit? = null
 
         fun getInstance() : Retrofit{

@@ -13,7 +13,7 @@ data class RankList(
             val audiChange: String,
             val audiCnt: String,
             val audiInten: String,
-            val movieCd: String,
+            val movieCd: String?,
             val movieNm: String,
             val openDt: String,
             val rank: String,
