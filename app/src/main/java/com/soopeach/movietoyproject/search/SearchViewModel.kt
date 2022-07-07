@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide.init
+import com.soopeach.movietoyproject.models.RankList
 import com.soopeach.movietoyproject.models.SearchDataList
 import com.soopeach.movietoyproject.models.getItem
 import com.soopeach.movietoyproject.models.getRankList
@@ -27,9 +29,14 @@ class SearchViewModel: ViewModel() {
     val searchedMovieList : LiveData<List<SearchDataList.Item>>
         get() = _searchedMovieList
 
+    private var _selectedItem = MutableLiveData<SearchDataList.Item>()
+    val selectedItem : LiveData<SearchDataList.Item>
+        get() = _selectedItem
+
     init {
         searchedMovieListInit()
         clearSearchBar()
+        initSelectedItem()
         titleHint = "어벤져스"
     }
 
@@ -78,5 +85,13 @@ class SearchViewModel: ViewModel() {
                 userRating = "null"
             )
         )
+    }
+
+    fun setSelectedItem(item : SearchDataList.Item) {
+        _selectedItem.value = item
+    }
+
+    fun initSelectedItem() {
+        _selectedItem.value = null
     }
 }

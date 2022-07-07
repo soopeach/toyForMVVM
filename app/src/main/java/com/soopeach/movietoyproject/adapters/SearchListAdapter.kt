@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.soopeach.movietoyproject.databinding.SearchListBinding
+import com.soopeach.movietoyproject.models.RankList
 import com.soopeach.movietoyproject.models.SearchDataList
 
-class SearchListAdapter : ListAdapter<SearchDataList.Item, SearchListAdapter.viewHolder>(SearchDiffCallback){
+class SearchListAdapter(private val searchOnClickListener: SearchOnClickListener) : ListAdapter<SearchDataList.Item, SearchListAdapter.viewHolder>(SearchDiffCallback){
 
     inner class viewHolder(val binding: SearchListBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: SearchDataList.Item){
@@ -24,7 +25,11 @@ class SearchListAdapter : ListAdapter<SearchDataList.Item, SearchListAdapter.vie
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            searchOnClickListener.onClick(item)
+        }
+        holder.bind(item)
     }
 }
 
@@ -42,4 +47,8 @@ object SearchDiffCallback : DiffUtil.ItemCallback<SearchDataList.Item>(){
     ): Boolean {
         return oldItem == newItem
     }
+}
+
+class SearchOnClickListener(val clickListener: (item: SearchDataList.Item) -> Unit) {
+    fun onClick(item: SearchDataList.Item) = clickListener(item)
 }

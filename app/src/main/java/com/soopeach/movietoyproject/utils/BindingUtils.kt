@@ -10,13 +10,12 @@ import com.soopeach.movietoyproject.models.RankDetail
 import com.soopeach.movietoyproject.models.RankList
 import com.soopeach.movietoyproject.models.SearchDataList
 
-class BindingUtils {
-}
-
 @BindingAdapter("hintForSearch")
 fun setHintForSearch(editText: android.widget.EditText, hint: String) {
     editText.hint = "검색 예시 ex) " + hint
 }
+
+// 영화진흥위원회 API(박스오피스)
 
 @BindingAdapter("rankListData")
 fun bindRecyclerView(recyclerView: androidx.recyclerview.widget.RecyclerView, data: List<RankList.BoxOfficeResult.DailyBoxOffice>?) {
@@ -44,6 +43,8 @@ fun setRankAudiAcc(textView: android.widget.TextView, item: RankList.BoxOfficeRe
     textView.text = "누적 관객수 : " + item?.audiAcc
 }
 
+// 네이버 검색 영화 API
+
 @BindingAdapter("searchListData")
 fun bindRecyclerViewForSearch(recyclerView: androidx.recyclerview.widget.RecyclerView, data: List<SearchDataList.Item>?) {
     val adapter = recyclerView.adapter as SearchListAdapter
@@ -65,6 +66,11 @@ fun setSearchPubDate(textView: android.widget.TextView, item: SearchDataList.Ite
     textView.text = "개봉일자 : " + item?.pubDate
 }
 
+@BindingAdapter("searchActors")
+fun setSearchActors(textView: android.widget.TextView, item: SearchDataList.Item?) {
+    textView.text =  item?.actor?.split("|")?.joinToString(" | ")
+}
+
 @BindingAdapter("searchImage")
 fun setSearchImage(imageView: android.widget.ImageView, item: SearchDataList.Item?){
     val url = item?.image
@@ -74,7 +80,10 @@ fun setSearchImage(imageView: android.widget.ImageView, item: SearchDataList.Ite
 fun String.getForMatted() : String {
     return this.replace("<b>", "").replace("</b>", "")
 }
+
 // 아래는 Detil 관련
+
+// 영화진흥위원회 API(박스오피스)
 @BindingAdapter("rankDetailTitle")
 fun setRankDetailTitle(textView: android.widget.TextView, item: RankDetail.MovieInfoResult.MovieInfo?) {
     textView.text = item?.movieNm
@@ -98,3 +107,4 @@ fun setRankDtailActors(textView: android.widget.TextView, item: RankDetail.Movie
     textView.text = item?.actors?.map { "${it.peopleNm}-(${it.cast}역)" }?.joinToString(", ")
 }
 
+// 네이버 검색 영화 API
