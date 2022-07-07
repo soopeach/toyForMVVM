@@ -31,6 +31,7 @@ class RankViewModel : ViewModel() {
     val movieRankList: LiveData<List<RankList.BoxOfficeResult.DailyBoxOffice>>
         get() = _movieRankList
 
+    // 선택된 영화의 코드
     private val _selectedMovieCd = MutableLiveData<String>()
     val selectedMovieCd: LiveData<String>
         get() = _selectedMovieCd

@@ -1,5 +1,8 @@
 package com.soopeach.movietoyproject.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 data class SearchDataList(
     val display: Int,
     val items: List<Item>,
@@ -7,6 +10,7 @@ data class SearchDataList(
     val start: Int,
     val total: Int
 ) {
+    @Parcelize
     data class Item(
         val actor: String,
         val director: String,
@@ -16,7 +20,7 @@ data class SearchDataList(
         val subtitle: String,
         val title: String,
         val userRating: String
-    )
+    ) : Parcelable
 }
 
 fun SearchDataList.getItem() : List<SearchDataList.Item> {

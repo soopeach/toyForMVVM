@@ -17,7 +17,11 @@
         android:id="@+id/searchFragment"
         android:name="com.soopeach.movietoyproject.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_detailSearchFragment"
+            app:destination="@id/detailSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailRankFragment"
         android:name="com.soopeach.movietoyproject.rank.DetailRankFragment"
@@ -26,6 +30,15 @@
         <argument
             android:name="movieCd"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSearchFragment"
+        android:name="com.soopeach.movietoyproject.search.DetailSearchFragment"
+        android:label="DetailSearchFragment"
+        tools:layout="@layout/fragment_detail_search">
+            <argument
+                android:name="item"
+                app:argType="com.soopeach.movietoyproject.models.SearchDataList$Item" />
     </fragment>
 
 </navigation>
