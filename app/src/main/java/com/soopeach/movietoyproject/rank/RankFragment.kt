@@ -40,7 +40,6 @@ class RankFragment : Fragment() {
                     .navigate(RankFragmentDirections.actionRankFragmentToDetailRankFragment(selectedMovieCd))
                 rankViewModel.initSelectedMovieCd()
             }
-
         })
 
         // 검색결과가 없다면 경고창 출력.

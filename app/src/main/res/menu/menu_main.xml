@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.soopeach.movietoyproject.MainActivity">
     <item
-        android:id="@+id/rankFragment"
+        android:id="@+id/rank"
         android:icon="@drawable/movie"
         android:title="영화순위" />
 
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/search"
         android:icon="@drawable/search"
         android:title="제목으로 영화검색" />
     <item
