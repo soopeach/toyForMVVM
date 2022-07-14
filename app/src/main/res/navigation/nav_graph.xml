@@ -3,42 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/rankFragment">
-    <fragment
-        android:id="@+id/rankFragment"
-        android:name="com.soopeach.movietoyproject.rank.RankFragment"
-        android:label="RankFragment"
-        tools:layout="@layout/fragment_rank">
-        <action
-            android:id="@+id/action_rankFragment_to_detailRankFragment"
-            app:destination="@id/detailRankFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.soopeach.movietoyproject.search.SearchFragment"
-        android:label="SearchFragment"
-        tools:layout="@layout/fragment_search">
-        <action
-            android:id="@+id/action_searchFragment_to_detailSearchFragment"
-            app:destination="@id/detailSearchFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailRankFragment"
-        android:name="com.soopeach.movietoyproject.rank.DetailRankFragment"
-        android:label="DetailRankFragment"
-        tools:layout="@layout/fragment_detail_rank">
-        <argument
-            android:name="movieCd"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailSearchFragment"
-        android:name="com.soopeach.movietoyproject.search.DetailSearchFragment"
-        android:label="DetailSearchFragment"
-        tools:layout="@layout/fragment_detail_search">
-            <argument
-                android:name="item"
-                app:argType="com.soopeach.movietoyproject.models.SearchDataList$Item" />
-    </fragment>
+    app:startDestination="@id/rank">
+
+    <include app:graph = "@navigation/rank" />
+    <include app:graph = "@navigation/search" />
 
 </navigation>
